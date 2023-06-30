@@ -1,24 +1,15 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+import { LoginContext } from './Context/LoginContext';
+import React, {useState} from 'react';
+import Profile from './pages/Profile';
+import Login from './pages/Login';
 function App() {
+	const [Data, setData] = useState(true)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+		<LoginContext.Provider value={{ setData }}>
+  			{Data ? <Profile /> : <Login />}
+		</LoginContext.Provider>
     </div>
   );
 }
